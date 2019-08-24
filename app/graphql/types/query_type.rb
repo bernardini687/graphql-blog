@@ -9,5 +9,14 @@ module Types
     def test_field
       "Hello World!"
     end
+
+    field :user, UserType, null: false do # Or true?
+      description 'Find a user by ID'
+      argument :id, ID, required: true
+    end
+
+    def user id:
+      User.find_by_id(id) # Or .find
+    end
   end
 end
