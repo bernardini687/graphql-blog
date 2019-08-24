@@ -10,5 +10,11 @@ module Types
     field :country, String, null: false
     field :posts, [PostType], null: true
     field :comments, [CommentType], null: true
+    field :full_address, String, null: false
+
+    def full_address
+      "#{object.number} #{object.street}, "\
+      "#{object.city} #{object.postcode}, #{object.country}"
+    end
   end
 end
