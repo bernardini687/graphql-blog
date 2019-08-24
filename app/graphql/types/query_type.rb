@@ -11,9 +11,9 @@ module Types
       argument :id, ID, required: true
     end
 
-    # field :comment, CommentType, null: true do
-    #   argument :id, ID, required: true
-    # end
+    field :comment, CommentType, null: true do
+      argument :id, ID, required: true
+    end
 
     def user id:
       User.find_by_id(id)
@@ -23,8 +23,8 @@ module Types
       Post.find_by_id(id)
     end
 
-    # def comment id:
-    #   Comment.find_by_id(id)
-    # end
+    def comment id:
+      Comment.find_by_id(id)
+    end
   end
 end
