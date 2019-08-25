@@ -8,6 +8,7 @@ module Types
     field :city, String, null: false
     field :postcode, String, null: false
     field :country, String, null: false
+
     field :posts, [PostType], null: true
     field :comments, [CommentType], null: true
     field :full_address, String, null: false
