@@ -1,9 +1,7 @@
 module Types
   class QueryType < Types::BaseObject
-    # Root-level fields will be entry points for queries on your schema
 
     field :user, UserType, null: true do
-      # description 'This is how to add a description'
       argument :id, ID, required: true
     end
 
