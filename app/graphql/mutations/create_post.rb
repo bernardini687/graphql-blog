@@ -5,7 +5,7 @@ module Mutations
 
     field :post, Types::PostType, null: true
 
-    def resolve body:, user_id:
+    def resolve(body:, user_id:)
       # user: context[:current_user]
       post = Post.new body: body, user_id: user_id
 

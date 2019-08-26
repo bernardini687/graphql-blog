@@ -1,9 +1,5 @@
 module Mutations
-  class DeleteUser < GraphQL::Schema::Mutation
-    description 'Return `true` if successful or `false` otherwise'
-
-    argument :id, ID, required: true
-
+  class DeleteUser < BaseDeletion
     type Boolean
 
     def resolve(id:)
