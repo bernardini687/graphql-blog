@@ -5,7 +5,7 @@ module Mutations
     field :user, Types::UserType, null: true
 
     def resolve(attributes:)
-      user = User.find_by_id(attributes[:id])
+      user = User.find_by_id attributes[:id]
       return { user: nil, errors: ['User not found'] } if user.nil?
 
       if user.update attributes.to_h
