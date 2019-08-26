@@ -4,13 +4,8 @@ module Mutations
 
     def resolve(id:)
       post = Post.find_by_id id
-
-      if post
-        post.destroy
-        true
-      else
-        false
-      end
+      # If `nil` return `false`: couldn't destroy
+      !post&.destroy.nil?
     end
   end
 end

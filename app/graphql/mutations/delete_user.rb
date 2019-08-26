@@ -4,13 +4,8 @@ module Mutations
 
     def resolve(id:)
       user = User.find_by_id id
-
-      if user
-        user.destroy
-        true
-      else
-        false
-      end
+      # If `nil` return `false`: couldn't destroy
+      !user&.destroy.nil?
     end
   end
 end
