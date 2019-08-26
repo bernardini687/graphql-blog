@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
-  has_many :posts
-  has_many :comments
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :first_name, :street, :city, :postcode, :country, presence: true
   validates :number, numericality: { only_integer: true }
