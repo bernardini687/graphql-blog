@@ -1,17 +1,17 @@
 module Mutations
   class UpdateUser < BaseMutation
-    argument :id, ID, required: true
     argument :attributes, Types::UserAttributes, required: true
 
     field :user, Types::UserType, null: true
 
-    def resolve id:, attributes:
-      user = User.find_by_id(id)
+    def resolve(attributes:)
+      user = User.find_by_id(attributes[:id])
+      return { user: nil, errors: ['User not found'] } if user.nil?
 
       if user.update attributes.to_h
-        { user: user, errors: [] }
+        user.success_payload
       else
-        { user: nil, errors: user.errors.full_messages }
+        user.failure_payload
       end
     end
   end

@@ -4,14 +4,10 @@ module Mutations
 
     field :user, Types::UserType, null: true
 
-    def resolve attributes:
+    def resolve(attributes:)
       user = User.new attributes.to_h
 
-      if user.save
-        { user: user, errors: [] }
-      else
-        { user: nil, errors: user.errors.full_messages }
-      end
+      user.save ? user.success_payload : user.failure_payload
     end
   end
 end

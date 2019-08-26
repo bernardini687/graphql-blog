@@ -2,6 +2,7 @@ module Types
   class UserAttributes < BaseInputObject
     description 'Attributes for creating or updating a user'
 
+    argument :id, ID, required: false
     argument :first_name, String, required: true
     argument :last_name, String, required: false
     argument :street, String, required: true
