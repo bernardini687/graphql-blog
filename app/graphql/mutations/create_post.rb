@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   class CreatePost < BaseMutation
     argument :body, String, required: true
