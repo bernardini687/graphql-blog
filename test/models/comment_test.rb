@@ -4,9 +4,9 @@ require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
   setup do
-    @user = users :one
-    @post = posts :one
-    @comment = Comment.new body: 'MyString', user: @user, post: @post
+    user = users :one
+    post = posts :one
+    @comment = Comment.new body: 'MyString', user: user, post: post
   end
 
   test 'valid comment' do
