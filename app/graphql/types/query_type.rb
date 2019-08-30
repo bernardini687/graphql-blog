@@ -14,6 +14,8 @@ module Types
       argument :id, ID, required: true
     end
 
+    field :all_users, [UserType], null: false
+
     def user(id:)
       User.find_by_id id
     end
@@ -24,6 +26,10 @@ module Types
 
     def comment(id:)
       Comment.find_by_id id
+    end
+
+    def all_users
+      User.all
     end
   end
 end
