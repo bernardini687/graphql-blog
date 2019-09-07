@@ -15,6 +15,7 @@ module Types
     end
 
     field :all_users, [UserType], null: false
+    field :all_posts, [PostType], null: false
 
     def user(id:)
       User.find_by_id id
@@ -30,6 +31,10 @@ module Types
 
     def all_users
       User.all
+    end
+
+    def all_posts
+      Post.all
     end
   end
 end
