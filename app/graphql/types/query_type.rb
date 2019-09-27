@@ -36,9 +36,7 @@ module Types
 
     def login(username:, password:)
       user = User.find_by_first_name(username)
-      if user&.authenticate(password)
-        user.sessions.create.key
-      end
+      user.sessions.create.key if user&.authenticate(password)
     end
 
     def all_users
