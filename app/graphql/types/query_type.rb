@@ -14,6 +14,11 @@ module Types
       argument :id, ID, required: true
     end
 
+    field :login, String, null: true, description: 'user login' do
+      argument :email, String, required: true
+      argument :password, String, required: true
+    end
+
     field :all_users, [UserType], null: false
     field :all_posts, [PostType], null: false
 
@@ -27,6 +32,9 @@ module Types
 
     def comment(id:)
       Comment.find_by_id id
+    end
+
+    def login(email:, password:)
     end
 
     def all_users
