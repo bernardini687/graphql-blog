@@ -15,7 +15,7 @@ module Types
     end
 
     field :login, String, null: true, description: 'user login' do
-      argument :email, String, required: true
+      argument :username, String, required: true
       argument :password, String, required: true
     end
 
@@ -34,7 +34,11 @@ module Types
       Comment.find_by_id id
     end
 
-    def login(email:, password:)
+    def login(username:, password:)
+      user = User.find_by_first_name(username)
+      if user&.authenticate(password)
+        user.sessions.create.key
+      end
     end
 
     def all_users

@@ -5,10 +5,11 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :sessions
 
+  has_secure_password
+
   validates :first_name, :street, :city, :postcode, :country, presence: true
   validates :number, numericality: { only_integer: true }
-
-  has_secure_password
+  validates :password, length: { minimum: 4 }, allow_nil: true
 
   def success_payload
     { user: self, errors: [] }
