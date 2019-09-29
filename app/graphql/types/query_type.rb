@@ -19,6 +19,7 @@ module Types
       argument :password, String, required: true
     end
 
+    field :current_user, UserType, null: true
     field :all_users, [UserType], null: false
     field :all_posts, [PostType], null: false
 
@@ -37,6 +38,10 @@ module Types
     def login(username:, password:)
       user = User.find_by_first_name(username)
       user.sessions.create.key if user&.authenticate(password)
+    end
+
+    def current_user
+      context[:current_user]
     end
 
     def all_users

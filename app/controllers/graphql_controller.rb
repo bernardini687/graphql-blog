@@ -3,10 +3,12 @@ class GraphqlController < ApplicationController
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
+
+    session = Session.find_by_key(request.headers['Authorization'])
     context = {
-      # Query context goes here, for example:
-      # current_user: current_user,
+      current_user: session&.user
     }
+
     result = GraphqlBlogSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
   rescue => e
