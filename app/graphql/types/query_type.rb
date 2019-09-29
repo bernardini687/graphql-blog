@@ -19,6 +19,7 @@ module Types
       argument :password, String, required: true
     end
 
+    field :logout, Boolean, null: true
     field :current_user, UserType, null: true
     field :all_users, [UserType], null: false
     field :all_posts, [PostType], null: false
@@ -38,6 +39,11 @@ module Types
     def login(username:, password:)
       user = User.find_by_first_name(username)
       user.sessions.create.key if user&.authenticate(password)
+    end
+
+    def logout
+      session = Session.find_by_id(context[:session_id])
+      true if session&.destroy
     end
 
     def current_user

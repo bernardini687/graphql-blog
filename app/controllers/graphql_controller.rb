@@ -6,7 +6,8 @@ class GraphqlController < ApplicationController
 
     session = Session.find_by_key(request.headers['Authorization'])
     context = {
-      current_user: session&.user
+      current_user: session&.user,
+      session_id: session&.id
     }
 
     result = GraphqlBlogSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
