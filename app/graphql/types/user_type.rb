@@ -13,6 +13,10 @@ module Types
     field :comments, [CommentType], null: true
     field :full_address, String, null: false
 
+    def self.visible?(context)
+      !!context[:current_user]
+    end
+
     def full_address
       "#{object.number} #{object.street}, "\
       "#{object.city} #{object.postcode}, #{object.country}"
